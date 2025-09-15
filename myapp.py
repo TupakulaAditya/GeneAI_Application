@@ -115,7 +115,7 @@ if st.session_state.history:
                 st.session_state.show_export_dropdown = not st.session_state.show_export_dropdown
         # Render dropdown overlay if toggled
     if st.session_state.show_export_dropdown:
-        history_text = "\n\n".join([f"{msg['role'].title()}: {msg['content']}" for msg in reversed(st.session_state.history)])
+        history_text = "\n\n".join([f"{msg['role'].title()}: {msg['content']}" for msg in st.session_state.history])
         st.subheader("Exported History")
         if st.button("📋 Copy History", key="copy_export_history", help="Copy history"):
             st.session_state.copied_history = history_text
@@ -151,7 +151,7 @@ if st.session_state.history:
             i += 1
     
     # Display conversation pairs (latest first)
-    for idx, (user_msg, ai_msg) in enumerate(conversation_pairs):
+    for idx, (user_msg, ai_msg) in enumerate(reversed(conversation_pairs)):
         # Create a container for each conversation pair
         with history_container:
             st.markdown("---")  # Separator line
