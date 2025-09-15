@@ -108,7 +108,7 @@ if st.session_state.history:
     with header_col:
         st.subheader("💬 Conversation History")
     with export_col:
-        if st.button("📋 Export History", use_container_width=True, help="Export conversation history"):
+        if st.button("📋 Export History", use_container_width=False, help="Export conversation history"):
             history_text = "\n\n".join([f"{msg['role'].title()}: {msg['content']}" for msg in st.session_state.history])
             st.code(history_text)
     with clear_col:
