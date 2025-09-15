@@ -110,24 +110,17 @@ if st.session_state.history:
     with header_col:
         st.subheader("💬 Conversation History")
     with export_col:
-        export_clicked = st.button("📋 Export History", use_container_width=False, help="Export conversation history")
-        if export_clicked:
-            st.session_state.show_export_dropdown = not st.session_state.show_export_dropdown
+            export_clicked = st.button("📋 Export History", use_container_width=False, help="Export conversation history")
+            if export_clicked:
+                st.session_state.show_export_dropdown = not st.session_state.show_export_dropdown
         # Render dropdown overlay if toggled
-        if st.session_state.show_export_dropdown:
-                history_text = "\n\n".join([f"{msg['role'].title()}: {msg['content']}" for msg in st.session_state.history])
-                st.markdown(
-                    f"""
-                    <div style='position: absolute; right: 40px; top: 180px; z-index: 1000; background: #222; color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); padding: 16px; min-width: 350px;'>
-                        <b>Exported History</b><br><pre style='white-space: pre-wrap; word-break: break-word;'>{history_text}</pre>
-                    </div>
-                    """,
-                    unsafe_allow_html=True
-                )
-                close_col = st.columns([8,1])[1]
-                with close_col:
-                    if st.button("Close Export History", key="close_export_dropdown_btn"):
-                        st.session_state.show_export_dropdown = False
+    if st.session_state.show_export_dropdown:
+        history_text = "\n\n".join([f"{msg['role'].title()}: {msg['content']}" for msg in reversed(st.session_state.history)])
+        st.subheader("Exported History")
+        if st.button("📋 Copy History", key="copy_export_history", help="Copy history"):
+            st.session_state.copied_history = history_text
+            st.success("History ready to copy! Select and copy from here:")
+            st.code(history_text)
     with clear_col:
             if st.button("🗑️ Clear All", use_container_width=True, help="Clear all conversation history"):
                 st.session_state.history = []
