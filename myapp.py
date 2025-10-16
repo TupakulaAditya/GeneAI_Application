@@ -52,9 +52,11 @@ model = st.selectbox(
     [
         "llama-3.3-70b-versatile",
         "llama-3.1-8b-instant", 
-        "gemma2-9b-it",
+        "groq/compound",
         "meta-llama/llama-4-maverick-17b-128e-instruct",
-        "deepseek-r1-distill-llama-70b",
+        "meta-llama/llama-prompt-guard-2-22m",
+        "moonshotai/kimi-k2-instruct-0905",
+        "whisper-large-v3-turbo",
         "openai/gpt-oss-120b",
     ],
     key="model_select",
