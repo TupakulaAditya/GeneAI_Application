@@ -56,7 +56,7 @@ model = st.selectbox(
         "meta-llama/llama-4-maverick-17b-128e-instruct",
         "meta-llama/llama-4-scout-17b-16e-instruct",
         "moonshotai/kimi-k2-instruct-0905",
-        "whisper-large-v3",
+        "moonshotai/kimi-k2-instruct",
         "openai/gpt-oss-120b",
     ],
     key="model_select",
